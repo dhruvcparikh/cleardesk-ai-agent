@@ -10,7 +10,7 @@ decision explained the way you'd explain it to an enterprise customer.
 
 [![Series Overview](https://img.youtube.com/vi/CtwbDsWIt34/maxresdefault.jpg)](https://www.youtube.com/watch?v=CtwbDsWIt34)
 
-▶ **[Full Playlist — All 18 Videos](https://www.youtube.com/playlist?list=CtwbDsWIt34)**
+▶ **[Full Playlist — All Videos](https://www.youtube.com/playlist?list=CtwbDsWIt34)**
 
 ---
 
