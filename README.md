@@ -1,6 +1,6 @@
 # Building an AI Customer Support Agent — From Zero to Production
 
-A production-grade AI support agent built across 18 videos. One
+A production-grade AI support agent built across 5 videos. One
 system. One fictional company (ClearDesk). Every architectural
 decision explained the way you'd explain it to an enterprise customer.
 
@@ -16,13 +16,13 @@ decision explained the way you'd explain it to an enterprise customer.
 
 ## What Gets Built
 
-| Module                   | Videos | What's Added                                     |
-| ------------------------ | ------ | ------------------------------------------------ |
-| 1 — Foundations          | 1–4    | RAG pipeline from scratch, no frameworks         |
-| 2 — Making It Real       | 5–8    | Chunking, Pinecone, memory, structured outputs   |
-| 3 — Token Optimization   | 9–11   | Cost modelling, prompt caching, hybrid search    |
-| 4 — Production Readiness | 12–15  | Eval, failure handling, security, multi-tenancy  |
-| 5 — The Full Picture     | 16–18  | Deployment checklist, retrospective, what's next |
+| Module                   | What's Added                                     |
+| ------------------------ | ------------------------------------------------ |
+| 1 — Foundations          | RAG pipeline from scratch, no frameworks         |
+| 2 — Making It Real       | Chunking, Pinecone, memory, structured outputs   |
+| 3 — Token Optimization   | Cost modelling, prompt caching, hybrid search    |
+| 4 — Production Readiness | Eval, failure handling, security, multi-tenancy  |
+| 5 — The Full Picture     | Deployment checklist, retrospective, what's next |
 
 ---
 
