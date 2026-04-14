@@ -1,0 +1,422 @@
+ClearDesk API Reference
+========================
+Last updated: March 2025 | API Version: v2 | Base URL: https://api.cleardesk.io/v2
+
+The ClearDesk API is a RESTful HTTP API that allows developers to programmatically access and manage workspace data. It uses JSON for request and response bodies and standard HTTP verbs (GET, POST, PATCH, DELETE).
+
+The API is available to Pro and Enterprise customers. Starter plan customers do not have API access.
+
+---
+
+AUTHENTICATION
+--------------
+All API requests must be authenticated. ClearDesk supports two authentication methods:
+
+1. API Key (recommended for server-to-server integrations)
+
+Generate an API key from Settings > API > Generate New Key. Each key is associated with the generating user's permissions — the API key can only access resources that user can access. Keep API keys secret. Do not expose them in client-side code or public repositories.
+
+Pass the API key in the Authorization header on every request:
+
+Authorization: Bearer YOUR_API_KEY
+
+Example request:
+
+GET https://api.cleardesk.io/v2/projects
+Authorization: Bearer cd_live_a8f3k2m9x7z1q4w6e0r5t
+
+2. OAuth 2.0 (recommended for integrations where end users authorise access)
+
+ClearDesk supports the OAuth 2.0 Authorization Code flow. Register your application at developer.cleardesk.io to obtain a client_id and client_secret.
+
+Step 1 — Redirect the user to the authorisation endpoint:
+GET https://app.cleardesk.io/oauth/authorize
+  ?client_id=YOUR_CLIENT_ID
+  &redirect_uri=https://yourapp.com/callback
+  &response_type=code
+  &scope=tasks:read tasks:write projects:read
+
+Step 2 — Exchange the authorisation code for an access token:
+POST https://api.cleardesk.io/oauth/token
+Content-Type: application/json
+
+{
+  "grant_type": "authorization_code",
+  "code": "AUTHORIZATION_CODE",
+  "client_id": "YOUR_CLIENT_ID",
+  "client_secret": "YOUR_CLIENT_SECRET",
+  "redirect_uri": "https://yourapp.com/callback"
+}
+
+Response:
+{
+  "access_token": "cd_access_abc123",
+  "token_type": "Bearer",
+  "expires_in": 3600,
+  "refresh_token": "cd_refresh_xyz789",
+  "scope": "tasks:read tasks:write projects:read"
+}
+
+Step 3 — Use the access token in the Authorization header:
+Authorization: Bearer cd_access_abc123
+
+Access tokens expire after 1 hour. Use the refresh token to get a new access token without requiring user re-authorisation:
+
+POST https://api.cleardesk.io/oauth/token
+{
+  "grant_type": "refresh_token",
+  "refresh_token": "cd_refresh_xyz789",
+  "client_id": "YOUR_CLIENT_ID",
+  "client_secret": "YOUR_CLIENT_SECRET"
+}
+
+OAuth Scopes:
+- tasks:read — read tasks in accessible projects
+- tasks:write — create, update, and delete tasks
+- projects:read — read project metadata and membership
+- projects:write — create and update projects
+- comments:read — read task comments
+- comments:write — post comments on tasks
+- members:read — read workspace member list
+- time_logs:read — read time tracking entries
+- time_logs:write — create and update time entries
+- webhooks:write — manage webhook endpoints
+
+---
+
+RATE LIMITS
+-----------
+Rate limits apply per API key (or per OAuth token).
+
+Pro plan:
+- 600 requests per minute
+- 10,000 requests per hour
+- 100,000 requests per day
+
+Enterprise plan:
+- 1,200 requests per minute
+- 50,000 requests per hour
+- Unlimited requests per day (subject to fair use)
+
+Rate limit headers are included in every API response:
+
+X-RateLimit-Limit: 600
+X-RateLimit-Remaining: 547
+X-RateLimit-Reset: 1711523400
+
+X-RateLimit-Limit: maximum requests per minute for your plan.
+X-RateLimit-Remaining: requests remaining in the current minute window.
+X-RateLimit-Reset: Unix timestamp when the current window resets.
+
+If you exceed the rate limit, the API returns HTTP 429 Too Many Requests:
+
+HTTP/1.1 429 Too Many Requests
+Retry-After: 14
+{
+  "error": "rate_limit_exceeded",
+  "message": "Rate limit of 600 requests/min exceeded. Retry after 14 seconds.",
+  "retry_after": 14
+}
+
+Best practices for rate limit management:
+- Implement exponential backoff with jitter when retrying after 429 responses.
+- Use webhooks for real-time event notifications rather than polling the API at short intervals.
+- Batch task updates using the bulk update endpoint (PATCH /tasks/bulk) rather than individual requests.
+- Cache responses where appropriate — project and member data changes infrequently.
+
+---
+
+ERRORS
+------
+The ClearDesk API returns standard HTTP status codes. All error responses include a JSON body with error and message fields.
+
+200 OK — Request succeeded.
+201 Created — Resource was successfully created.
+204 No Content — Request succeeded with no response body (typically for DELETE requests).
+400 Bad Request — The request body or parameters are invalid. Check the errors array in the response for field-level details.
+401 Unauthorized — Missing or invalid API key or access token.
+403 Forbidden — The authenticated user does not have permission to perform this action.
+404 Not Found — The requested resource does not exist or the user does not have access to it.
+409 Conflict — The request conflicts with the current state (e.g. duplicate name in the same project).
+422 Unprocessable Entity — The request is well-formed but contains semantic errors (e.g. a due date before the start date).
+429 Too Many Requests — Rate limit exceeded. See the Retry-After header.
+500 Internal Server Error — An unexpected error occurred on our end. Retrying after a brief wait is appropriate. If the issue persists, contact api-support@cleardesk.io.
+
+Error response format:
+{
+  "error": "validation_error",
+  "message": "Request validation failed.",
+  "errors": [
+    { "field": "due_date", "message": "Due date must be on or after the start date." },
+    { "field": "assignee_id", "message": "User not found or not a member of this workspace." }
+  ]
+}
+
+---
+
+PAGINATION
+----------
+All list endpoints (GET requests that return arrays) are paginated. The default page size is 50 items. The maximum page size is 200.
+
+Use query parameters to control pagination:
+- limit: number of items per page (default 50, max 200)
+- cursor: the pagination cursor returned in the previous response (for cursor-based pagination)
+
+Example request:
+GET /v2/tasks?project_id=proj_abc123&limit=100&cursor=eyJpZCI6MTIzfQ
+
+Pagination metadata is returned in the response:
+{
+  "data": [ ... ],
+  "meta": {
+    "total": 843,
+    "returned": 100,
+    "has_more": true,
+    "next_cursor": "eyJpZCI6MjIzfQ",
+    "prev_cursor": "eyJpZCI6MTIzfQ"
+  }
+}
+
+Iterate through pages by passing next_cursor as the cursor parameter in subsequent requests, until has_more is false.
+
+---
+
+CORE ENDPOINTS
+--------------
+
+PROJECTS
+
+GET /v2/projects
+List all projects accessible to the authenticated user.
+Query parameters: workspace_id (required), status (active|archived|all), limit, cursor.
+Response: Array of project objects.
+
+GET /v2/projects/{project_id}
+Retrieve a single project by ID.
+Response: Project object with fields: id, name, description, status, owner_id, created_at, updated_at, member_count, task_count, archived.
+
+POST /v2/projects
+Create a new project.
+Request body:
+{
+  "workspace_id": "ws_abc123",
+  "name": "Q3 Product Launch",
+  "description": "All tasks for the Q3 release",
+  "owner_id": "user_def456",
+  "status": "active",
+  "template_id": "tmpl_xyz789"  // optional
+}
+Response: 201 Created with the new project object.
+
+PATCH /v2/projects/{project_id}
+Update project metadata. Only include fields you want to change.
+Request body (all fields optional):
+{
+  "name": "Q3 Product Launch — Updated",
+  "status": "on_track",
+  "description": "Updated description"
+}
+
+DELETE /v2/projects/{project_id}
+Archive a project (does not permanently delete data). Returns 204 No Content.
+
+---
+
+TASKS
+
+GET /v2/tasks
+List tasks. Must filter by project_id or assignee_id.
+Query parameters: project_id, assignee_id, status, priority (urgent|high|medium|low|none), due_before (ISO 8601 date), due_after, completed (true|false), limit, cursor.
+
+GET /v2/tasks/{task_id}
+Retrieve a single task with all fields.
+Response: Task object with fields: id, project_id, title, description, status, priority, assignee_id, follower_ids, start_date, due_date, completed_at, parent_task_id, subtask_ids, attachment_count, comment_count, custom_fields, time_logged_minutes, created_at, updated_at.
+
+POST /v2/tasks
+Create a new task.
+Request body:
+{
+  "project_id": "proj_abc123",
+  "title": "Write API documentation",
+  "description": "Draft and publish the v2 API reference guide.",
+  "assignee_id": "user_def456",
+  "priority": "high",
+  "status": "to_do",
+  "start_date": "2025-04-01",
+  "due_date": "2025-04-15",
+  "follower_ids": ["user_ghi789", "user_jkl012"],
+  "parent_task_id": null,
+  "custom_fields": {
+    "field_mno345": "Backend",
+    "field_pqr678": true
+  }
+}
+Response: 201 Created with the new task object.
+
+PATCH /v2/tasks/{task_id}
+Update a task. Only include fields you want to change.
+
+DELETE /v2/tasks/{task_id}
+Permanently delete a task and all its subtasks. Returns 204 No Content.
+Note: This action is irreversible. For archiving, update the task status to Done instead.
+
+PATCH /v2/tasks/bulk
+Update multiple tasks in a single request. Maximum 100 tasks per bulk request.
+Request body:
+{
+  "task_ids": ["task_abc", "task_def", "task_ghi"],
+  "updates": {
+    "status": "in_progress",
+    "assignee_id": "user_def456"
+  }
+}
+Response: 200 OK with an array of updated task objects.
+
+---
+
+COMMENTS
+
+GET /v2/tasks/{task_id}/comments
+List all comments on a task, newest first.
+
+POST /v2/tasks/{task_id}/comments
+Post a new comment.
+Request body:
+{
+  "body": "Updated the spec. @user_def456 can you review?",
+  "attachments": []
+}
+Response: 201 Created with the new comment object.
+
+DELETE /v2/comments/{comment_id}
+Delete a comment. Only the comment author or a Workspace Admin can delete comments. Returns 204 No Content.
+
+---
+
+TIME LOGS
+
+GET /v2/tasks/{task_id}/time_logs
+List time log entries for a task.
+Response: Array of time log objects with fields: id, task_id, user_id, minutes, date, note, created_at.
+
+POST /v2/tasks/{task_id}/time_logs
+Log time on a task.
+Request body:
+{
+  "minutes": 90,
+  "date": "2025-04-10",
+  "note": "Initial research and outline"
+}
+Response: 201 Created with the new time log object.
+
+DELETE /v2/time_logs/{time_log_id}
+Delete a time log entry. Returns 204 No Content.
+
+---
+
+MEMBERS
+
+GET /v2/workspaces/{workspace_id}/members
+List all members of a workspace.
+Query parameters: role (admin|editor|commenter|viewer|guest), limit, cursor.
+Response: Array of member objects with fields: id, email, name, role, avatar_url, joined_at, last_active_at.
+
+GET /v2/workspaces/{workspace_id}/members/{user_id}
+Retrieve a single workspace member.
+
+---
+
+WEBHOOKS
+---------
+Webhooks allow the ClearDesk API to push real-time event notifications to your server instead of requiring you to poll the API.
+
+Setting up a webhook:
+POST /v2/webhooks
+Request body:
+{
+  "workspace_id": "ws_abc123",
+  "url": "https://yourserver.com/cleardesk-events",
+  "events": ["task.created", "task.completed", "comment.added"],
+  "secret": "your_webhook_secret"
+}
+Response: 201 Created with the webhook object including its id.
+
+Supported webhook events:
+- task.created
+- task.updated
+- task.completed
+- task.deleted
+- comment.added
+- project.created
+- project.updated
+- project.archived
+- member.added
+- member.removed
+
+Webhook payload format:
+{
+  "event": "task.completed",
+  "timestamp": "2025-04-10T09:32:14Z",
+  "workspace_id": "ws_abc123",
+  "data": {
+    "task_id": "task_def456",
+    "project_id": "proj_ghi789",
+    "completed_by": "user_jkl012",
+    "completed_at": "2025-04-10T09:32:14Z"
+  }
+}
+
+Verifying webhook signatures:
+Each webhook payload is signed using HMAC-SHA256 with the secret you provided at registration. The signature is sent in the X-ClearDesk-Signature header:
+
+X-ClearDesk-Signature: sha256=a3f8d2b1e7c4...
+
+Verify the signature by computing HMAC-SHA256 of the raw request body using your secret and comparing it to the header value. Reject any requests where the signatures do not match.
+
+Webhook delivery and retries:
+Your server must respond with HTTP 2xx within 10 seconds. If it does not, ClearDesk will retry the delivery up to 5 times with exponential backoff: 1 minute, 5 minutes, 30 minutes, 2 hours, and 8 hours. After 5 failed deliveries, the webhook is marked as Failed and disabled. You can re-enable it and review failed deliveries from Settings > API > Webhooks.
+
+Managing webhooks:
+GET /v2/webhooks — list all webhooks for a workspace.
+GET /v2/webhooks/{webhook_id} — retrieve a webhook.
+PATCH /v2/webhooks/{webhook_id} — update a webhook (URL, events, enabled/disabled).
+DELETE /v2/webhooks/{webhook_id} — delete a webhook permanently.
+
+---
+
+VERSIONING AND DEPRECATION
+----------------------------
+The current stable API version is v2. ClearDesk maintains two API versions simultaneously. When a new major version is released, the previous version is supported for a minimum of 12 months before being deprecated.
+
+Breaking changes are never introduced within a major version. Adding new fields, new endpoints, and new optional parameters are considered non-breaking changes and may occur in any update.
+
+Deprecated endpoints or fields are indicated in API responses with a Deprecation header and a sunset date:
+
+Deprecation: Mon, 01 Jun 2026 00:00:00 GMT
+Sunset: Fri, 01 Jan 2027 00:00:00 GMT
+
+The API changelog is maintained at developer.cleardesk.io/changelog. Subscribe to the developer newsletter at developer.cleardesk.io to receive advance notice of deprecations.
+
+---
+
+SDKs AND CLIENT LIBRARIES
+---------------------------
+Official ClearDesk SDKs are maintained on GitHub at github.com/cleardesk:
+
+Python SDK: pip install cleardesk
+Node.js SDK: npm install @cleardesk/sdk
+Ruby SDK: gem install cleardesk
+
+The SDKs wrap the REST API with idiomatic language interfaces, handle authentication and token refresh automatically, and implement retry logic and rate limit back-off.
+
+Community-maintained SDKs exist for PHP, Go, and Java — see the developer portal for links. Community SDKs are not officially supported by ClearDesk.
+
+---
+
+API SUPPORT
+-----------
+API documentation: developer.cleardesk.io
+Status page: status.cleardesk.io
+API-specific support: api-support@cleardesk.io
+Response time: 24 hours on business days for Pro customers, 4 hours for Enterprise customers.
+Developer community: community.cleardesk.io (Slack workspace for developers building on the ClearDesk API)

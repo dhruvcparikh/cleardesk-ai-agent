@@ -1,0 +1,214 @@
+ClearDesk Pricing Plans — Complete Reference
+=============================================
+Last updated: March 2025 | Version: 4.2
+
+ClearDesk offers three plans: Starter, Pro, and Enterprise. All plans are billed per seat (licensed member). Guest users do not count as seats. Prices listed are in USD.
+
+---
+
+STARTER PLAN
+------------
+Price: Free (up to 5 members) or USD 5 per member per month (up to 20 members)
+Billing: Monthly only
+Minimum seats: 1
+Maximum seats: 20
+
+Starter is designed for small teams or individuals getting started with project management. It includes core task and project functionality with reasonable limits.
+
+Included in Starter:
+- Up to 10 active projects
+- Unlimited tasks and subtasks (within active projects)
+- List view, Board view, Calendar view (Timeline view not included)
+- Task priorities, statuses, due dates, assignees, and followers
+- File attachments: up to 25 MB per file
+- Workspace storage: 5 GB total
+- Basic automations: up to 20 active automation rules
+- In-app and email notifications
+- iOS and Android mobile apps
+- Recurring tasks
+- CSV import and export
+- Help Centre access and community forums
+- Email support (response within 48 hours on business days)
+
+Not included in Starter:
+- Timeline (Gantt) view
+- Task dependencies
+- Portfolios
+- Time tracking
+- Custom fields
+- Guest users
+- Slack, GitHub, and webhook integrations
+- Google Drive and Dropbox integration
+- SAML SSO
+- Priority support
+- Workload and burndown reports
+- Audit logs
+
+---
+
+PRO PLAN
+---------
+Price: USD 12 per member per month (billed annually) or USD 15 per member per month (billed monthly)
+Annual billing discount: 20% off the monthly rate
+Minimum seats: 1
+Maximum seats: 500
+
+Pro is designed for growing teams that need advanced scheduling, integrations, automation, and reporting. It is the most popular plan for mid-sized businesses.
+
+Included in Pro (everything in Starter, plus):
+- Up to 100 active projects
+- Timeline (Gantt) view with dependencies and milestones
+- Task dependencies
+- Time tracking (per task, with export)
+- Custom fields: up to 50 per workspace (text, number, date, dropdown, checkbox, URL)
+- Guest users: up to 5 guests per licensed seat (guests are free)
+- File attachments: up to 100 MB per file
+- Workspace storage: 100 GB total
+- Advanced automations: up to 200 active automation rules
+- Portfolios: unlimited portfolios with workload view
+- Workload and burndown reports
+- Slack integration (per-project notification configuration)
+- Google Drive integration (attach and preview Google Docs/Sheets/Slides)
+- Dropbox and OneDrive integration
+- GitHub integration (PR and commit linking)
+- Zapier and Make (Integromat) integration
+- Webhooks: up to 10 endpoints per workspace
+- Mandatory two-factor authentication (workspace-wide enforcement)
+- Priority email support: response within 24 hours on business days
+- In-app chat support: Monday to Friday, 9 AM to 6 PM IST
+- 90-day audit log retention
+- Data export: full workspace export on demand (JSON + CSV)
+
+Not included in Pro:
+- SAML SSO / single sign-on
+- Jira two-way sync
+- Custom reports
+- Unlimited guests
+- Dedicated Customer Success Manager
+- 99.9% uptime SLA
+- Data residency options
+- Audit log retention beyond 90 days
+- Advanced security controls (IP allowlisting, session management)
+
+---
+
+ENTERPRISE PLAN
+----------------
+Price: Custom (contact sales@cleardesk.io for a quote)
+Billing: Annual only (multi-year discounts available)
+Minimum seats: 20
+Maximum seats: Unlimited
+
+Enterprise is designed for large organisations with complex security, compliance, administration, and integration requirements. Pricing is based on seat count, contract length, and required add-ons.
+
+Included in Enterprise (everything in Pro, plus):
+- Unlimited active projects
+- Unlimited guests (no per-seat cap)
+- File attachments: up to 500 MB per file
+- Workspace storage: Unlimited
+- Unlimited automation rules
+- Custom reports: build, save, and share reports using any task field or custom field
+- Jira two-way sync (bi-directional task and status mapping)
+- SAML 2.0 SSO with any identity provider (Okta, Azure AD, Google Workspace, OneLogin, PingFederate, ADFS)
+- SCIM provisioning: automatically provision and deprovision user accounts from your identity provider
+- Advanced security: IP allowlisting, session timeout controls, login attempt monitoring
+- Data residency: choose between US, EU, or APAC data hosting regions (subject to availability)
+- Audit logs: 1-year retention, full activity log downloadable as CSV
+- 99.9% uptime SLA (monthly, contractually guaranteed)
+- Dedicated Customer Success Manager from day one
+- Priority support: 4-hour response time, 24 hours a day, 7 days a week
+- Quarterly business reviews with your CSM
+- Custom onboarding and training sessions
+- Sandbox environment: separate non-production workspace for testing
+- Volume licensing and multi-workspace management for enterprise accounts with multiple teams
+
+---
+
+PLAN COMPARISON TABLE
+----------------------
+
+Feature                          Starter     Pro         Enterprise
+-----------------------------------------------------------------
+Price (per member/month)         Free–$5     $12–$15     Custom
+Max members                      20          500         Unlimited
+Active projects                  10          100         Unlimited
+List / Board / Calendar views    Yes         Yes         Yes
+Timeline (Gantt) view            No          Yes         Yes
+Task dependencies                No          Yes         Yes
+Subtasks                         Yes         Yes         Yes
+Custom fields                    No          50          Unlimited
+Recurring tasks                  Yes         Yes         Yes
+Time tracking                    No          Yes         Yes
+Guest users                      No          5 per seat  Unlimited
+File size per attachment         25 MB       100 MB      500 MB
+Workspace storage                5 GB        100 GB      Unlimited
+Automations (active rules)       20          200         Unlimited
+Portfolios                       No          Yes         Yes
+Workload reports                 No          Yes         Yes
+Custom reports                   No          No          Yes
+Slack integration                No          Yes         Yes
+GitHub integration               No          Yes         Yes
+Jira two-way sync                No          No          Yes
+SAML SSO                         No          No          Yes
+SCIM provisioning                No          No          Yes
+IP allowlisting                  No          No          Yes
+Data residency                   US only     US only     US / EU / APAC
+Audit log retention              None        90 days     1 year
+Uptime SLA                       None        None        99.9%
+Support                          Email 48h   Chat + 24h  24/7, 4h SLA
+Dedicated CSM                    No          No          Yes
+-----------------------------------------------------------------
+
+---
+
+ADD-ONS (available on Pro and Enterprise)
+------------------------------------------
+The following add-ons can be purchased separately and billed monthly:
+
+Additional Storage: USD 10 per month per 100 GB additional storage. Available on Pro plan only (Enterprise has unlimited storage).
+Advanced Analytics Pack: USD 8 per member per month. Adds advanced burndown/burnup charts, custom dashboards, and the ability to export reports via API. Available on Pro and Enterprise.
+Enhanced Security Pack: USD 6 per member per month on Pro. Adds IP allowlisting, enhanced session management, and extended audit log retention (1 year). On Enterprise, this is included by default.
+
+---
+
+BILLING AND PAYMENT
+---------------------
+Accepted payment methods:
+- Credit card (Visa, Mastercard, American Express) — all plans
+- ACH bank transfer (US accounts only) — Pro and Enterprise
+- Wire transfer — Enterprise only (minimum USD 5,000 per invoice)
+- Purchase orders — Enterprise only
+
+Billing cycle options:
+- Monthly: billed on the same date each month. Cancel anytime, effective at end of current period.
+- Annual: billed once per year, 20% discount vs monthly rate. Refunds are not provided for mid-year cancellations, but you may downgrade at renewal.
+
+Invoices: Automatically generated and emailed to the billing contact at each charge. Available for download from Settings > Billing > Invoice History.
+
+Taxes: ClearDesk collects applicable taxes (GST, VAT, sales tax) based on the billing address provided. Indian customers are charged 18% GST. EU customers with a valid VAT ID are billed without VAT (reverse charge mechanism applies).
+
+Currency: All charges are in USD. If your card is in another currency, your bank or card issuer handles conversion and may charge a foreign transaction fee. INR pricing is available for Indian annual contracts — contact sales for a local-currency quote.
+
+Seat changes mid-cycle:
+- Adding seats: charged a prorated amount for the remainder of the current billing period, then at the new rate from the next cycle.
+- Removing seats: effective at the start of the next billing period. The reduced count must still meet the plan minimum.
+
+Free Trial: New workspaces receive a 14-day free trial of the Pro plan, no credit card required. At the end of the trial, the workspace automatically moves to the Starter (free) plan unless a Pro or Enterprise subscription is purchased.
+
+---
+
+DATA SECURITY AND COMPLIANCE
+------------------------------
+ClearDesk infrastructure is hosted on Amazon Web Services (AWS). Data is encrypted at rest (AES-256) and in transit (TLS 1.2+).
+
+Certifications and compliance:
+- SOC 2 Type II certified (annual audit)
+- ISO 27001 certified
+- GDPR compliant (Data Processing Agreement available on request for Pro and Enterprise customers)
+- HIPAA: ClearDesk is not HIPAA certified. Customers handling Protected Health Information (PHI) should not store PHI in ClearDesk without a signed Business Associate Agreement. Contact sales@cleardesk.io to discuss options.
+
+Backups: Automated daily backups retained for 30 days. Point-in-time recovery is available on Enterprise.
+
+Data deletion: Upon account cancellation, data is permanently deleted after the 90-day retention window. Enterprise customers can request immediate deletion upon contract termination.
+
+Sub-processors: A full list of ClearDesk sub-processors (including AWS, Stripe, SendGrid, and Intercom) is available at cleardesk.io/legal/sub-processors.

@@ -1,0 +1,103 @@
+ClearDesk Knowledge Base — Frequently Asked Questions
+======================================================
+Last updated: March 2025 | Version: 4.2
+
+---
+
+Q: How do I reset my password?
+A: Go to app.cleardesk.io and click "Forgot password" on the login screen. Enter the email address associated with your account and click Send Reset Link. You will receive an email within 2 minutes. Click the link in the email — it expires after 24 hours. If you do not receive the email, check your spam folder or contact support@cleardesk.io. Workspace admins can also reset passwords on behalf of team members from Settings > Team Members > select user > Reset Password.
+
+---
+
+Q: How do I export my project data as CSV?
+A: Open the project you want to export. Click the three-dot menu (⋯) in the top right corner of the project view and select Export. Choose CSV from the format options. You can export All Tasks, Completed Tasks Only, or a Custom Date Range. Click Generate Export — the file will download automatically within 30 seconds. Note: you need Editor permissions or above to export project data. Guests cannot export data. For large projects (over 5,000 tasks), the export is sent to your email rather than downloaded directly.
+
+---
+
+Q: Can I add a guest user to my workspace?
+A: Yes. Guests can be added on Pro and Enterprise plans. Go to Settings > Team Members > Invite People. Enter the guest's email address and select Guest from the role dropdown. Guests can view and comment on projects they are explicitly invited to — they cannot create projects, view billing, or access workspace settings. Guests do not count toward your licensed seat total. You can invite up to 5 guests per licensed seat on the Pro plan, and unlimited guests on Enterprise.
+
+---
+
+Q: What is the difference between a Member and a Guest?
+A: Members are licensed seats with full access to create and edit projects, tasks, timelines, and reports within their permission level. Members can be assigned roles of Viewer, Commenter, Editor, or Admin. Guests are unlicensed users invited to specific projects only. They can view and comment but cannot create projects, access workspace-level settings, or use integrations. Guests also cannot be assigned tasks as owners — they can only be mentioned in comments.
+
+---
+
+Q: How do I change my plan or billing information?
+A: Go to Settings > Billing. Only Workspace Admins can access billing settings. From the Billing page you can upgrade or downgrade your plan, update your payment method (credit card or ACH bank transfer), download past invoices, and manage your billing cycle (monthly or annual). Plan changes take effect immediately — if you upgrade mid-cycle, you are charged a prorated amount for the remainder of the billing period. Downgrade changes take effect at the start of your next billing cycle.
+
+---
+
+Q: Why was I charged twice this month?
+A: Double charges can occur in two situations. First, if you upgraded your plan mid-cycle, your invoice will show the original charge for the previous plan and a prorated charge for the new plan — this is not a duplicate. Second, if you genuinely see two identical charges, this may be a payment processing error. Go to Settings > Billing > Invoice History to review your charges. If you see a true duplicate, contact support@cleardesk.io with your invoice numbers and our billing team will issue a refund within 3–5 business days.
+
+---
+
+Q: How do I invite team members to my workspace?
+A: Go to Settings > Team Members > Invite People. Enter email addresses (you can enter multiple, separated by commas). Select the default role for new members: Viewer, Commenter, Editor, or Admin. Click Send Invitations. Invitees will receive an email with a join link valid for 7 days. If a member does not accept within 7 days, you can resend the invitation from the Pending Invitations section of the Team Members page.
+
+---
+
+Q: How do I remove a team member from my workspace?
+A: Go to Settings > Team Members. Find the member you want to remove and click the three-dot menu next to their name, then select Remove from Workspace. Their account is deactivated immediately — they lose access to all projects. Their tasks are not deleted; they remain assigned and visible in the project. You can reassign those tasks to another member after removal. Removing a member frees up a licensed seat immediately.
+
+---
+
+Q: What happens to my data if I cancel my subscription?
+A: When you cancel, your workspace enters a 30-day grace period. During this time, your workspace is read-only — you can view and export data but cannot create or edit. After 30 days, the workspace is archived. Archived workspaces are retained for 90 days before permanent deletion. We strongly recommend exporting all project data before cancelling. To cancel, go to Settings > Billing > Cancel Subscription.
+
+---
+
+Q: How do I connect ClearDesk to Slack?
+A: Go to Settings > Integrations > Slack and click Connect. You will be redirected to Slack's authorisation page — click Allow. Once connected, you can configure notifications per project: open the project, click Settings (gear icon), and select Notifications > Slack. Choose which events to notify: task created, task completed, comment added, or due date approaching. You can connect one Slack workspace per ClearDesk workspace. The Slack integration is available on Pro and Enterprise plans only.
+
+---
+
+Q: Can I use ClearDesk offline?
+A: ClearDesk has limited offline capability in the mobile app (iOS and Android). You can view tasks and projects that have been recently cached, and add comments or update task status — these changes sync automatically when you reconnect. The web app requires an internet connection. Offline mode is not available for timeline views, reports, or file attachments. Data created offline is stored locally and synced within 60 seconds of reconnecting.
+
+---
+
+Q: How do I set a recurring task?
+A: Open a task and click the Due Date field. Below the calendar, click Set Recurrence. Choose from daily, weekly, monthly, or custom intervals. For custom intervals you can set specific days of the week, day of the month, or an exact date pattern. When a recurring task is completed, a new instance is automatically created with the next due date. Recurring tasks are available on all plans.
+
+---
+
+Q: How do I archive a project?
+A: Open the project and click the three-dot menu (⋯) in the top right, then select Archive Project. Archived projects are removed from your active project list but are not deleted. All data is preserved. To view archived projects, go to your workspace home and click the Archived tab. To restore a project, open it from the Archived tab and click Restore Project. Only Workspace Admins and project Editors can archive projects.
+
+---
+
+Q: What file types can I attach to tasks?
+A: ClearDesk supports attachments of any file type. The maximum file size per attachment is 25 MB on the Starter plan, 100 MB on Pro, and 500 MB on Enterprise. You can attach files from your computer, Google Drive, Dropbox, or OneDrive. Files stored in ClearDesk count toward your workspace storage quota: 5 GB on Starter, 100 GB on Pro, and unlimited on Enterprise. Supported preview formats (viewable without download): PDF, PNG, JPG, GIF, MP4, and Google Docs/Sheets/Slides.
+
+---
+
+Q: How do I assign a task to multiple people?
+A: ClearDesk supports one task owner but multiple followers. To assign ownership, click the assignee field on a task and select a team member. To add additional people who should be notified of updates, click Add Followers and select team members. Followers receive notifications for comments, status changes, and due date updates. If you need multiple people to own a piece of work, the recommended approach is to create subtasks under a parent task, each assigned to a different person.
+
+---
+
+Q: How do I use task dependencies?
+A: Open a task and scroll to the Dependencies section. Click Add Dependency and select either Blocked by (this task cannot start until another is complete) or Blocks (this task must be complete before another can start). You can add multiple dependencies to a single task. Dependent tasks show a link icon in the task list. On the Timeline view, dependency arrows are drawn between linked tasks. If a blocking task's due date changes, you will receive an alert to review dependent tasks. Dependencies are available on Pro and Enterprise plans.
+
+---
+
+Q: Can I import tasks from another tool?
+A: Yes. Go to Settings > Import. ClearDesk supports CSV import and direct import from Asana, Trello, Jira, and Monday.com. For CSV import, download our template from the Import page to see the required column format. For direct imports, you will need to authorise ClearDesk to connect to your existing tool. During import you can map fields and choose which projects to import. Imported data is not retroactively synced — it is a one-time snapshot. Import is available on all plans.
+
+---
+
+Q: How do I enable two-factor authentication (2FA)?
+A: Go to your profile (click your avatar in the top right) > Security > Two-Factor Authentication > Enable. Scan the QR code with an authenticator app (Google Authenticator, Authy, or 1Password). Enter the 6-digit code to confirm. Once enabled, you will be prompted for a code at every login. You can also generate backup codes from the same page — store these securely. Workspace Admins can require 2FA for all members from Settings > Security > Require 2FA. Mandatory 2FA is available on Pro and Enterprise plans.
+
+---
+
+Q: What is the maximum number of projects I can create?
+A: On the Starter plan, you can create up to 10 active projects. On Pro, up to 100 active projects. On Enterprise, unlimited projects. Archived projects do not count toward the active project limit. If you reach your limit on Starter or Pro, you will need to archive an existing project or upgrade before creating a new one.
+
+---
+
+Q: How do I contact ClearDesk support?
+A: You can reach our support team through the following channels. In-app chat: click the ? icon in the bottom right corner — available Monday to Friday, 9 AM to 6 PM IST. Email: support@cleardesk.io — response within 24 hours on business days. For Enterprise customers, a dedicated Customer Success Manager is assigned at onboarding, and priority support is available with a guaranteed 4-hour response time. There is no phone support line. Our Help Centre at help.cleardesk.io contains documentation, video tutorials, and community forums.

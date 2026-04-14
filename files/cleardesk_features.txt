@@ -1,0 +1,140 @@
+ClearDesk Product Features — Complete Reference
+================================================
+Last updated: March 2025 | Version: 4.2
+
+ClearDesk is a cloud-based project management platform built for collaborative teams. It combines task tracking, timeline planning, cross-team reporting, and automation in a single workspace. This document describes each major feature area.
+
+---
+
+PROJECTS
+--------
+A project is the top-level container for work in ClearDesk. Each project has its own task list, timeline, members, settings, and integrations. Projects can be organized into Portfolios for cross-project visibility.
+
+Project Views: Each project supports four views that display the same underlying tasks in different formats.
+- List View: A flat, scrollable list of all tasks with inline editing. Filter by assignee, due date, status, priority, or custom field. Sort by any column. Bulk-edit multiple tasks simultaneously by selecting them and using the action bar.
+- Board View: A Kanban-style board where each column represents a task status. Drag tasks between columns to update their status. Add, rename, and reorder columns. Board view is the default for teams using agile or sprint workflows.
+- Timeline View: A Gantt-style timeline showing tasks as horizontal bars across a date range. Drag bar edges to adjust start and end dates. Draw dependency arrows between tasks. Zoom between day, week, month, and quarter views. Export timeline to PDF or PNG.
+- Calendar View: Tasks are displayed on a monthly or weekly calendar by due date. Drag tasks to reschedule. Filter by assignee to see individual workloads.
+
+Project Templates: Save any project as a template to reuse its structure, custom fields, automations, and task list — without carrying over content or assignees. Templates are available to all members of a workspace. ClearDesk also provides 30+ built-in templates for common workflows: product launch, sprint planning, content calendar, onboarding, bug tracking, and more.
+
+Project Status: Each project has a status indicator visible in the workspace home: On Track, At Risk, or Off Track. Admins and Editors can update this manually or configure it to update automatically based on overdue task percentage thresholds.
+
+---
+
+TASKS
+-----
+Tasks are the fundamental unit of work in ClearDesk. Each task contains the following fields:
+
+Title: Required. The name of the task (up to 500 characters).
+Description: A rich text field supporting bold, italics, bullet lists, numbered lists, inline code, @mentions, and embedded images.
+Assignee: The single owner responsible for completing the task. One assignee per task. Set from the task detail view or inline in the list.
+Followers: Additional team members who receive notifications for this task but are not responsible for completing it.
+Due Date: Optional single date, or a date range (start date + due date). Tasks with past due dates are highlighted red.
+Priority: Four levels — Urgent, High, Medium, Low. Default is no priority. Filter and sort by priority in list view.
+Status: Every task has a status. Default statuses are To Do, In Progress, In Review, and Done. Workspace Admins can add, rename, reorder, and colour custom statuses. Marking a task as Done triggers any configured automations.
+Subtasks: Tasks can contain up to 5 levels of nested subtasks. Subtask completion rolls up to the parent task as a progress percentage.
+Attachments: Files attached to a task (see file size limits by plan in the FAQ). Attachments can be previewed directly in the task pane.
+Comments: Threaded comment section on each task. Supports @mentions, file attachments, reactions (emoji), and inline code blocks. Comments generate in-app and email notifications to assignees and followers.
+Time Tracking: Log time directly on a task using the timer (start/stop) or manual entry. View total logged time per task. Export time logs as CSV from the Reports section. Available on Pro and Enterprise plans.
+Custom Fields: Workspace Admins can define custom fields that appear on every task across the workspace or on specific projects. Supported types: Text, Number, Date, Dropdown (single or multi-select), Checkbox, URL. Up to 50 custom fields per workspace.
+
+---
+
+TIMELINES
+---------
+The Timeline view provides Gantt-chart functionality for scheduling and dependency management.
+
+Task Bars: Each task with a start date and due date appears as a horizontal bar. The bar length represents the duration. Drag the bar to move the task; drag the edges to extend or shorten it.
+Milestones: Mark key dates as milestones (diamond icons) on the timeline. Milestones have no duration and are typically used for deadlines, releases, or reviews.
+Dependencies: Draw dependency lines between tasks directly on the timeline. A dependency means one task must be completed before another can begin. When a blocking task is delayed, ClearDesk flags all dependent tasks and shows an impact summary.
+Baseline: Save a baseline snapshot of your planned timeline at project kick-off. Compare the current state against the baseline at any time to see which tasks are ahead or behind original estimates.
+Export: Export the timeline as a PDF or PNG image, suitable for sharing with stakeholders who do not have ClearDesk access.
+
+---
+
+PORTFOLIOS
+----------
+Portfolios provide a cross-project view for managers and executives who oversee multiple projects simultaneously.
+
+Portfolio Dashboard: See the status, completion percentage, owner, and timeline of all projects in a portfolio on a single page. Filter by project status, owner, or custom tag.
+Workload View: See how work is distributed across team members across all projects in the portfolio. Identify overloaded members and reassign tasks without leaving the portfolio view.
+Progress Rollup: Each portfolio shows an aggregate progress percentage based on the proportion of tasks marked Done across all its projects.
+Portfolios are available on Pro and Enterprise plans.
+
+---
+
+AUTOMATION
+----------
+Automations allow teams to set up trigger-action rules that run without manual intervention.
+
+Triggers: Task status changes, due date approaches (N days before), task created, task assigned, comment added, custom field value changes.
+Actions: Change task status, assign to a specific member, move task to another project, send an in-app or email notification, create a subtask, set a custom field value, post a message to a connected Slack channel.
+Conditions: Automations can include conditions to filter when the action fires — for example, "only if priority is Urgent" or "only if assignee is a specific person."
+Automation Rules: Each workspace can have up to 20 active automations on Starter, 200 on Pro, and unlimited on Enterprise. Automations run in the cloud and execute within 60 seconds of the trigger event. Each automation shows a run history with timestamps and outcomes.
+
+Example automations commonly used by ClearDesk teams:
+- When a task status changes to In Review, assign it to the QA team member and post a Slack notification to #qa-reviews.
+- When a task due date passes and status is still To Do, change priority to Urgent and notify the assignee.
+- When a task is marked Done, create a subtask titled "Archive documentation" assigned to the project manager.
+
+---
+
+REPORTING
+---------
+Reports give managers visibility into project health, team productivity, and workload distribution.
+
+Burnup / Burndown Charts: Available per project. Show task completion rate over time versus the target pace. Used in sprint or time-boxed project tracking.
+Completed Tasks Report: Filter by project, date range, assignee, and status to see a breakdown of completed work. Export to CSV.
+Time Tracking Report: Aggregate logged hours across tasks, projects, and team members. Filter by date range and assignee. Export to CSV. Available on Pro and Enterprise plans.
+Workload Report: Per-team-member view showing number of open tasks, tasks due this week, and tasks overdue. Helps identify bottlenecks and capacity issues.
+Custom Reports: Build your own reports using any combination of task fields and custom fields. Save and share custom reports with your team. Available on Enterprise plan.
+
+---
+
+NOTIFICATIONS AND ALERTS
+-------------------------
+ClearDesk sends notifications through three channels: in-app (bell icon), email, and Slack (if integrated).
+
+In-App Notifications: Appear in real time in the notification panel. Notifications are generated when: you are mentioned in a comment, a task is assigned to you, a task you follow has a status change, or an automation sends you a notification.
+Email Notifications: Sent for the same events as in-app notifications. You can control the frequency (immediate, daily digest, or off) from your profile > Notifications. Email digests are sent at 8 AM in your local timezone.
+Due Date Reminders: Configured per workspace. Default is 24 hours before due date. Workspace Admins can change this to 48 hours, 1 week, or turn it off entirely.
+@Mentions: Typing @name in any comment or task description sends an immediate notification to that user. You can @mention a team member in a task, comment, or project status update.
+
+---
+
+PERMISSIONS AND ROLES
+----------------------
+ClearDesk uses a role-based permission system with four roles:
+
+Viewer: Can view tasks, timelines, and projects they have been added to. Cannot create, edit, or delete tasks. Cannot comment.
+Commenter: Can view and comment on tasks. Cannot create or edit tasks.
+Editor: Can create, edit, assign, and delete tasks. Can manage project settings. Cannot access billing or workspace-wide settings.
+Admin: Full access to all workspace settings, billing, integrations, member management, and all projects. Admins can also set project-level permissions to restrict who can edit specific projects.
+
+Project-Level Override: Admins can set a project as Private — only explicitly invited members can see it. By default, all workspace members can view all projects (Viewer level access minimum).
+
+---
+
+INTEGRATIONS
+-------------
+ClearDesk integrates with the following tools out of the box. All integrations are available on Pro and Enterprise plans unless noted.
+
+Slack: Post task notifications to Slack channels. Configure per-project. Supported events: task created, completed, commented, or due date approaching.
+Google Drive: Attach Google Docs, Sheets, or Slides directly to tasks. Files open in Google's editor when clicked. Changes in Google Drive are reflected in ClearDesk automatically.
+GitHub: Link pull requests and commits to ClearDesk tasks. When a PR is merged or a commit references a task ID (e.g. #CD-4821), the task is automatically updated. Available on Pro and Enterprise.
+Jira: Two-way sync between ClearDesk tasks and Jira issues. Map ClearDesk statuses to Jira statuses. Useful for teams where engineering uses Jira and the rest of the team uses ClearDesk. Available on Enterprise only.
+Zapier / Make (Integromat): Connect ClearDesk to 3,000+ apps via Zapier or Make. Common use cases: create a ClearDesk task from a Typeform submission, log task completions in Google Sheets, send data to a CRM on task creation.
+Webhooks: ClearDesk can send HTTP POST payloads to any URL when trigger events occur. Use webhooks to build custom integrations. Supported events: task.created, task.updated, task.completed, task.deleted, comment.added. Webhooks are available on Pro and Enterprise plans.
+SSO / SAML: Enterprise customers can configure SAML 2.0-based Single Sign-On with their identity provider (Okta, Azure AD, Google Workspace, OneLogin). When SSO is enabled, team members log in via their company's identity provider and do not need a separate ClearDesk password. Workspace Admins configure SSO from Settings > Security > Single Sign-On.
+
+---
+
+MOBILE APPS
+-----------
+ClearDesk is available as a native mobile app for iOS (14 and above) and Android (8.0 and above).
+
+Supported on mobile: View and edit tasks, add comments, update task status, log time, receive push notifications, view timeline (read-only), and access basic project list.
+Not supported on mobile: Creating automations, managing integrations, accessing reports, bulk editing, and the portfolio view.
+Push Notifications: Configurable per device from mobile app settings. Control which events trigger push notifications independently of your email and in-app preferences.
+Offline Mode: As described in the FAQ, recent data is cached locally. Changes made offline sync on reconnection.
