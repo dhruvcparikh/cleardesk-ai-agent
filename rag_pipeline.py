@@ -1,14 +1,8 @@
+import re
 # --- CHUNKING --- #
 
-def chunk_text(text, chunk_size=5000, overlap=500):
-    chunks = []
-    start = 0
-    while start < len(text):
-        end = start + chunk_size
-        chunk = text[start:end]
-        chunks.append(chunk)
-        start += chunk_size - overlap
-    return chunks
+def chunk_text(text, separator="\n\n"):
+    return [s.strip() for s in text.split(separator) if len(s.strip()) > 50]
 
 import os
 all_chunks = []
@@ -21,16 +15,6 @@ for filename in os.listdir("files"):
 
 print(f"Total chunks: {len(all_chunks)}")
 print(f"Example chunk: {all_chunks[1]['text'][:500]}...")
-
-
-
-
-
-
-
-
-
-
 
 
 # --- EMBEDDING --- #
@@ -63,9 +47,6 @@ with open("embeddings.json", "w") as f:
 print(f"Saved {len(all_chunks)} embeddings to embeddings.json")
 
 
-
-
-
 # --- RETRIEVING --- #
 
 import numpy as np
@@ -89,11 +70,6 @@ for score, chunk in results:
     print(f"Text:  {chunk['text'][:150]}...")
     print()
 # Expected: top chunk from cleardesk_faq.txt, score ~0.89
-
-
-
-
-
 
 
 #  --- GENERATION --- #
@@ -121,6 +97,6 @@ q1 = "How do I export my project data as CSV?"
 answer, sources = ask(q1)
 print(f"Q: {q1}\nA: {answer}\nSources: {sources}")
 
-q2 = "What is the difference between Pro and Enterprise plans?"
-answer, sources = ask(q2)
-print(f"\nQ: {q2}\nA: {answer}\nSources: {sources}")
+# q2 = "Why am I not able to add another project?"
+# answer, sources = ask(q2)
+# print(f"\nQ: {q2}\nA: {answer}\nSources: {sources}")
